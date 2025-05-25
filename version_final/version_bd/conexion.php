@@ -1,19 +1,17 @@
 <?php
-$servidor    = "localhost";   // IP o hostname
-$basededatos = "dam";         // Nombre de tu base de datos
-$usuario     = "root";        // Usuario de MySQL
-$contrasena  = "";            // Contraseña de MySQL
-
-// Montamos el DSN usando esas variables
-$dsn = "mysql:host=$servidor;dbname=$basededatos;charset=utf8mb4";
-
+/* EDITA usuario y contraseña de tu MySQL */
+$host = 'localhost';
+$db   = 'practica';
+$user = 'root';
+$pass = '';
+$dsn  = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
 try {
-    // Creamos la conexión PDO usando el DSN
-    $pdo = new PDO($dsn, $usuario, $contrasena);
-    // Forzamos que cualquier fallo lance una excepción
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    // Si falla la conexión, mostramos el error y detenemos el script
-    exit("Error en la conexión: " . $e->getMessage());
+    die('Conexión fallida: '.$e->getMessage());
 }
 ?>

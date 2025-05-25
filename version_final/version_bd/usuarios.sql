@@ -1,14 +1,10 @@
--- Crear la base de datos
-CREATE DATABASE IF NOT EXISTS usuarios
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_general_ci;
+-- crea la base de datos y la tabla
+CREATE DATABASE IF NOT EXISTS practica CHARACTER SET utf8mb4;
+USE practica;
 
--- Seleccionar la base de datos
-USE usuarios;
-
--- Crear la tabla de usuarios
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  pass VARCHAR(255) NOT NULL
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
